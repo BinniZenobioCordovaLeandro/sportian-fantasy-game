@@ -16,7 +16,7 @@ To adequately evaluate the frontend work, we will need some basic points covered
 
 ### Optional Requirements
 - [ ] Implement some type of cache in the API calls.
-- [ ] Implement the following tools in the project: eslint, prettier. This will provide error management through eslint and uniform formatting for the entire project with prettier.
+- [*] Implement the following tools in the project: eslint, prettier. This will provide error management through eslint and uniform formatting for the entire project with prettier.
 
 ### Features to Evaluate
 - [ ] Testing of at least one component.

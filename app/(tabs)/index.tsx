@@ -1,88 +1,73 @@
-import { Image, StyleSheet, Platform } from "react-native";
-
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { useEffect } from "react";
+import { Image, View } from "react-native";
+import { useEffect, useState } from "react";
 import { characterService } from "@/services/character.service";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ICharacter } from "@/models/character.model";
+import { Character } from "@/components/character/character";
+import { Button } from "@/components/button/button";
+import { useRoute } from "@react-navigation/native";
+import { router } from 'expo-router';
+
+interface IHomeScreenProps {
+  page?: number;
+}
 
 export default function HomeScreen() {
-  useEffect(() => {
-    characterService.pagination(3).then((response) => {
-      console.log("pagination", response);
-    });
+  const route = useRoute();
+  const { page = 1 } = route.params as IHomeScreenProps;
 
-    characterService.single(10).then((response) => {
-      console.log("single", response);
+  const [characters, setCharacters] = useState<ICharacter[]>([]);
+
+  useEffect(() => {
+    characterService.pagination(page).then((response) => {
+      console.log("pagination", response);
+      setCharacters(response?.results);
     });
 
     return () => {};
-  }, []);
+  }, [page]);
 
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
       headerImage={
         <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
+          style={{ width: "100%", height: "100%" }}
+          source={{
+            uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/1280px-Rick_and_Morty.svg.png",
+          }}
         />
       }
     >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: "cmd + d", android: "cmd + m" })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this
-          starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{" "}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+      {/* use Wrap view  */}
+      <View style={{
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+        padding: 10,
+      }}>
+        {characters.map((character) => (
+          <Character
+            key={character.id}
+            name={character.name}
+            species={character.species}
+            type={character.type}
+            image={character.image}
+            onPress={() => { 
+              router.navigate("explore", { id: character.id });
+            }}
+          />
+        ))}
+      </View>
+      <View>
+        <Button onPress={() => {
+          router.navigate("home", { page: page - 1 });
+        }}>{"<<< Previous Page"}</Button>
+        <Button onPress={() => { 
+          router.navigate("home", { page: page + 1 });
+        }}>{"Next Page >>>"}</Button>
+      </View>
     </ParallaxScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
-  },
-});

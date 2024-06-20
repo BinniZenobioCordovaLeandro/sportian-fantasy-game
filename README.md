@@ -1,50 +1,34 @@
-# Welcome to your Expo app 👋
+# Prueba Técnica React-Native
+### Test Description
+The test involves developing a Single Page Application (SPA) that lists characters from Rick and Morty.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The API from which the data will be retrieved is https://rickandmortyapi.com/api, and its documentation is available at https://rickandmortyapi.com/documentation/#rest. Use the REST version of the API.
 
-## Get started
+### Requirements
+To adequately evaluate the frontend work, we will need some basic points covered, as well as some desirable features to properly assess the developed application.
 
-1. Install dependencies
+### Minimum Requirements
+- [ ] Create a list of Rick and Morty characters.
+- [ ] The list should display 10 characters.
+- [ ] Add pagination or a "load more" button.
+- [ ] Create a filter area that at least filters by name.
+- [ ] Create a view that shows information about a single character with detailed information.
 
-   ```bash
-   npm install
-   ```
+### Optional Requirements
+- [ ] Implement some type of cache in the API calls.
+- [ ] Implement the following tools in the project: eslint, prettier. This will provide error management through eslint and uniform formatting for the entire project with prettier.
 
-2. Start the app
+### Features to Evaluate
+- [ ] Testing of at least one component.
+- [ ] Use animations with react-native-reanimated or another preferred library.
+- [ ] Careful layout design.
+- [ ] Best practices.
+- [ ] Clean code.
 
-   ```bash
-    npx expo start
-   ```
+### *The design is up to the candidate.*
+![mockUp](docs/mockUp.png)
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Key Points
+- [ ] Design should be adaptable to both Android and iOS.
+- [ ] Do not use interface design frameworks like Tailwind, Bootstrap, etc.
+- [ ] Use CSS, SCSS, or preferably styled-components or @emotion/styled.

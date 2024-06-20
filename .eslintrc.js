@@ -1,0 +1,28 @@
+// https://docs.expo.dev/guides/using-eslint/
+module.exports = {
+  extends: ['expo', 'prettier'],
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': 'error',
+    'no-unused-vars': 'warn',
+    'no-console': 'warn',
+    "indent": ["error", 2],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "semi": ["error", "never"],
+    "max-len": ["error", 80],
+    "comma-dangle": ["error", "never"],
+    "keyword-spacing": ["error", { "before": true, "after": true }],
+    "space-before-blocks": ["error", "always"],
+    "space-infix-ops": "error",
+    "space-unary-ops": ["error", { "words": true, "nonwords": false }],
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "camelcase": ["error", { "properties": "always" }],
+    "no-use-before-define": ["error", { "functions": true, "classes": true }],
+    "eqeqeq": ["error", "always"],
+    "no-eval": "error",
+    "no-multi-spaces": "error",
+    "no-param-reassign": "error",
+    "arrow-parens": ["error", "as-needed"],
+  },
+};

@@ -1,5 +1,5 @@
-import { Image, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
+import { Image, ScrollView } from "react-native";
 import { characterService } from "@/services/character.service";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ICharacter } from "@/models/character.model";
@@ -8,9 +8,10 @@ import { Button } from "@/components/button/button";
 import { router, useLocalSearchParams } from "expo-router";
 import { Body, ConfigBar, ListContainer, NavigationContainer } from "./home.presets";
 import { TextInput } from "@/components/text-input/text-input";
+import { IHomeScreenProps } from "./home.props";
 
 export default function HomeScreen() {
-  const { page = 1 } = useLocalSearchParams();
+  const { page } = useLocalSearchParams<IHomeScreenProps>();
 
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [filterName, setFilterName] = useState<string | undefined>(undefined);
@@ -22,8 +23,9 @@ export default function HomeScreen() {
   useEffect(() => {
     characterService.pagination(page).then((response) => {
       console.log("pagination", response);
-      const data = response?.results;
-      setCharacters(data);
+      let data = response?.results;
+      data = data.slice(0, 10)
+      setCharacters(data.slice(0, 10));
       setFilteredCharacters(data);
     });
 
@@ -33,8 +35,12 @@ export default function HomeScreen() {
   useEffect(() => {
     console.log("filterName", filterName);
     if (filterName) {
-      const data = characters.filter((character) => {
-        return character.name.toLowerCase().includes(filterName.toLowerCase());
+      const data = characters.filter((character: ICharacter) => {
+        return [
+          character.name.toLowerCase(),
+          character.species.toLowerCase(),
+          character.type.toLowerCase()
+        ].join(" ").includes(filterName.toLowerCase());
       });
       setFilteredCharacters(data);
     } else {
@@ -82,16 +88,14 @@ export default function HomeScreen() {
             onPress={() => {
               router.navigate(`home/${parseInt(page) - 1}`);
             }}
-          >
-            {"<<< Previous Page"}
-          </Button>
+            children="<<< Previous Page"
+          />
           <Button
             onPress={() => {
               router.navigate(`home/${parseInt(page) + 1}`);
             }}
-          >
-            {"Next Page >>>"}
-          </Button>
+            children="Next Page >>>"
+          />
         </NavigationContainer>
       </Body>
     </ParallaxScrollView>

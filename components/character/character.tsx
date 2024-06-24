@@ -7,6 +7,7 @@ import Animated, {
   withSequence,
 } from "react-native-reanimated";
 import {
+  ActionWrapper,
   BodyWrapper,
   CharacterContainer,
   ImageWrapper,
@@ -36,8 +37,8 @@ export const Character = (props: CharacterProps) => {
       <Animated.View style={animatedStyle}>
         <ImageWrapper>
           <Image
-            width={250}
-            height={250}
+            width={300}
+            height={300}
             shape="circle"
             source={{ uri: props.image }}
           />
@@ -48,9 +49,11 @@ export const Character = (props: CharacterProps) => {
         <Text type="default">{props.species}</Text>
         <Text type="defaultSemiBold">{props.type}</Text>
       </BodyWrapper>
-      {props.onPress != null && (
-        <Button onPress={props.onPress}>More info...</Button>
-      )}
+      <ActionWrapper>
+        {props.onPress != null && (
+          <Button onPress={props.onPress}>More info...</Button>
+        )}
+      </ActionWrapper>
     </CharacterContainer>
   );
 };

@@ -9,9 +9,9 @@ To adequately evaluate the frontend work, we will need some basic points covered
 
 ### Minimum Requirements
 - [*] Create a list of Rick and Morty characters.
-- [ ] The list should display 10 characters.
+- [*] The list should display 10 characters.
 - [*] Add pagination or a "load more" button.
-- [ ] Create a filter area that at least filters by name.
+- [*] Create a filter area that at least filters by name.
 - [*] Create a view that shows information about a single character with detailed information.
 
 ### Optional Requirements
@@ -21,7 +21,7 @@ To adequately evaluate the frontend work, we will need some basic points covered
 ### Features to Evaluate
 - [*] Testing of at least one component.
 - [*] Use animations with react-native-reanimated or another preferred library.
-- [ ] Careful layout design.
+- [*] Careful layout design.
 - [*] Best practices.
 - [*] Clean code.
 

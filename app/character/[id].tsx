@@ -12,6 +12,7 @@ import {
 } from "./character.presets";
 import { ScrollView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
 
 export default function Character() {
   const { id = 1 } = useLocalSearchParams();;
@@ -27,17 +28,19 @@ export default function Character() {
   }, [id]);
 
   return (
-    <ScrollView>
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+      headerImage={
+        <Image
+          style={{ width: "100%", height: "100%" }}
+          source={{
+            uri: character?.image,
+          }}
+        />
+      }
+    >
       <Body>
         <Row>
-          <ImageWrapper>
-            <Image
-              source={{ uri: character?.image }}
-              height={500}
-              width={500}
-              shape="circle"
-            />
-          </ImageWrapper>
           <Section>
             <Title type="title">{character?.name}</Title>
             <Detail>Status: {character?.status}</Detail>
@@ -45,8 +48,6 @@ export default function Character() {
             <Detail>Type: {character?.type}</Detail>
             <Detail>Gender: {character?.gender}</Detail>
           </Section>
-        </Row>
-        <Row>
           <Section>
             <Title type="title">Origin</Title>
             <Detail>Name: {character?.origin.name}</Detail>
@@ -73,6 +74,6 @@ export default function Character() {
           </Section>
         </Row>
       </Body>
-    </ScrollView>
+    </ParallaxScrollView>
   );
 }

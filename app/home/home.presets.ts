@@ -2,9 +2,7 @@ import { spacing } from "@/constants/spacing";
 import styled from "styled-components/native";
 
 export const Body = styled.View`
-  flex: 1;
-  flex-direction: column;
-  background-color: red;
+  display: block;
 `;
 
 export const ListContainer = styled.View`
@@ -17,7 +15,7 @@ export const ListContainer = styled.View`
 
 export const ConfigBar = styled.View`
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   padding: ${spacing[5]}px;
 `;

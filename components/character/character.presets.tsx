@@ -18,11 +18,21 @@ export const CharacterContainer = styled.View`
 export const ImageWrapper = styled.View`
   position: relative;
   top: -50px;
-  margin-bottom: -50px;
+  margin-bottom: -90px;
 `;
 
 export const BodyWrapper = styled.View`
   width: 100%;
-  padding: ${spacing[3]}px;
+  overflow: hidden;
+  max-height: 100px;
+  padding: ${spacing[3]}px 0px;
   align-items: center;
+`;
+
+export const ActionWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  padding: ${spacing[3]}px 0px;
+  background-color: #1f1d2b;
 `;

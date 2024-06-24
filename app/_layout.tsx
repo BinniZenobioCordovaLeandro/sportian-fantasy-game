@@ -1,4 +1,4 @@
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from "styled-components";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -10,6 +10,10 @@ import { Colors } from "@/constants/colors";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+export const unstable_settings = {
+  initialRouteName: 'home/1',
+};
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -30,7 +34,7 @@ export default function RootLayout() {
   return (
     <ThemeProvider theme={colorScheme === "dark" ? Colors.dark : Colors.light}>
       <Stack
-        initialRouteName="home/[page]"
+        initialRouteName="home/1"
         screenOptions={{
           headerShown: false,
           statusBarColor: Colors[colorScheme ?? "light"].tint,
@@ -38,9 +42,13 @@ export default function RootLayout() {
       >
         <Stack.Screen
           name="home/[page]"
+          initialParams={{ page: 1 }}
+          options={{ title: "Home" }}
         />
         <Stack.Screen
           name="character/[id]"
+          initialParams={{ id: 1 }}
+          options={{ title: "Character" }}
         />
         <Stack.Screen name="+not-found" />
       </Stack>

@@ -6,5 +6,6 @@ export const TextInputContainer = styled.TextInput`
   border: ${border[2]}px solid black;
   padding: ${spacing[3]}px;
   margin: ${spacing[3]}px;
+  background-color: #f0f0f0;
   width: 200px;
 `;

@@ -11,7 +11,8 @@
     "test": "jest --watchAll",
     "lint": "expo lint -- --fix",
     "format": "prettier --write .",
-    "storybook-generate": "sb-rn-get-stories"
+    "storybook-generate": "sb-rn-get-stories",
+    "clean": "rm -rf node_modules && rm -rf ios/Pods && rm -rf ios/build && rm -rf ios/DerivedData && rm -rf ios/*.xcworkspace && rm -rf ios/*.xcuserdatad && rm -rf ios/*.xcuserdata && rm -rf ios/*.xcproj && rm -rf ios/*.xccheckout"
   },
   "jest": {
     "preset": "jest-expo"

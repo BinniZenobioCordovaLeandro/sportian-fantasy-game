@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 
 export const Body = styled.View`
   display: block;
-  background-color: ${({ theme }) => theme.background};
+  background-color: #f0f0f0;
 `;
 
 export const Row = styled.View`

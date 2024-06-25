@@ -11,7 +11,7 @@ import { TextInput } from "@/components/text-input/text-input";
 import { IHomeScreenProps } from "./home.props";
 
 export default function HomeScreen() {
-  const { page } = useLocalSearchParams<IHomeScreenProps>();
+  const { page = 1 } = useLocalSearchParams<IHomeScreenProps>();
   const [availableNextPage, setavailableNextPage] = useState(false);
 
   const [characters, setCharacters] = useState<ICharacter[]>([]);
@@ -75,9 +75,8 @@ export default function HomeScreen() {
           <Button onPress={() => setFilterName(undefined)}>Clear</Button>
         </ConfigBar>
         <ListContainer>
-          {filteredCharacters?.map((character) => (
+          {filteredCharacters?.map((character: ICharacter) => (
             <Character
-              key={character.id}
               name={character.name}
               species={character.species}
               type={character.type}
@@ -91,14 +90,14 @@ export default function HomeScreen() {
         <NavigationContainer>
           <Button
             onPress={() => {
-              router.navigate(`home/${parseInt(page) - 1}`);
+              router.navigate(`home/${page - 1}`);
             }}
             children="<<< Previous Page"
           />
           {availableNextPage && (
             <Button
               onPress={() => {
-                router.navigate(`home/${parseInt(page) + 1}`);
+                router.navigate(`home/${page + 1}`);
               }}
               children="Next Page >>>"
             />

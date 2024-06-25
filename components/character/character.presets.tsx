@@ -1,7 +1,14 @@
 import { border } from "@/constants/border";
 import { radius } from "@/constants/radius";
 import { spacing } from "@/constants/spacing";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
+
+const {
+  width: SCREEN_WIDTH,
+} = Dimensions.get('window');
+
+const isMobile = SCREEN_WIDTH < 768;
 
 export const CharacterContainer = styled.View`
   margin: ${spacing[3]}px;
@@ -12,7 +19,12 @@ export const CharacterContainer = styled.View`
   overflow: hidden;
   width: 200px;
   height: 300px;
-  background-color: #181734;
+  ${
+    isMobile && `
+      width: 100%;
+      height: 300px;
+    `
+  }
 `;
 
 export const ImageWrapper = styled.View`
@@ -34,5 +46,4 @@ export const ActionWrapper = styled.View`
   justify-content: space-around;
   width: 100%;
   padding: ${spacing[3]}px 0px;
-  background-color: #1f1d2b;
 `;

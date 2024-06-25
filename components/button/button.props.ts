@@ -1,4 +1,6 @@
+import { ReactNode } from "react";
+
 export interface ButtonProps {
-    children: string;
     onPress: () => void;
+    children: ReactNode,
 }

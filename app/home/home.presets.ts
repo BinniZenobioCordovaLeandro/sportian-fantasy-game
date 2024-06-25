@@ -10,7 +10,6 @@ export const ListContainer = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: ${spacing[5]}px;
 `;
 
 export const ConfigBar = styled.View`

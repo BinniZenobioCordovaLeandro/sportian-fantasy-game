@@ -13,8 +13,8 @@ describe('Button', () => {
       <Button
         onClick={() => {
           // do nothing
-        }} children="Button"
-      />
+        }}
+      >Button</Button>
     )
   })
 })

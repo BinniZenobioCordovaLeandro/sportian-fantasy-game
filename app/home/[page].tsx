@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Image, ScrollView } from "react-native";
+import { Image } from "react-native";
 import { characterService } from "@/services/character.service";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ICharacter } from "@/models/character.model";
 import { Character } from "@/components/character/character";
 import { Button } from "@/components/button/button";
-import { Redirect, router, useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { Body, ConfigBar, ListContainer, NavigationContainer } from "./home.presets";
 import { TextInput } from "@/components/text-input/text-input";
 import { IHomeScreenProps } from "./home.props";
+import { Parallax } from "@/components/parallax/parallax";
 
 export default function HomeScreen() {
   const { page = 1 } = useLocalSearchParams<IHomeScreenProps>();
@@ -54,7 +54,7 @@ export default function HomeScreen() {
   }, [filterName]);
 
   return (
-    <ParallaxScrollView
+    <Parallax
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
       headerImage={
         <Image
@@ -77,6 +77,7 @@ export default function HomeScreen() {
         <ListContainer>
           {filteredCharacters?.map((character: ICharacter) => (
             <Character
+              key={character.id}
               name={character.name}
               species={character.species}
               type={character.type}
@@ -104,6 +105,6 @@ export default function HomeScreen() {
           )}
         </NavigationContainer>
       </Body>
-    </ParallaxScrollView>
+    </Parallax>
   );
 }

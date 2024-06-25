@@ -42,8 +42,6 @@ export const BodyWrapper = styled.View`
 `;
 
 export const ActionWrapper = styled.View`
-  flex-direction: row;
   justify-content: space-around;
-  width: 100%;
   padding: ${spacing[3]}px 0px;
 `;

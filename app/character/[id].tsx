@@ -11,10 +11,9 @@ import {
   Section,
   Title,
 } from "./character.presets";
-import { ScrollView } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { Button } from "@/components/button/button";
+import { Parallax } from "@/components/parallax/parallax";
 
 export default function Character() {
   const { id = 1 } = useLocalSearchParams();;
@@ -31,7 +30,7 @@ export default function Character() {
   }, [id]);
 
   return (
-    <ParallaxScrollView
+    <Parallax
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
       headerImage={
         <Image
@@ -85,6 +84,6 @@ export default function Character() {
             />
         </NavigationContainer>
       </Body>
-    </ParallaxScrollView>
+    </Parallax>
   );
 }

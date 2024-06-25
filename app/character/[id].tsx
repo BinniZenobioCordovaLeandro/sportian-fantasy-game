@@ -6,6 +6,7 @@ import {
   Body,
   Detail,
   ImageWrapper,
+  NavigationContainer,
   Row,
   Section,
   Title,
@@ -13,6 +14,7 @@ import {
 import { ScrollView } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { Button } from "@/components/button/button";
 
 export default function Character() {
   const { id = 1 } = useLocalSearchParams();;
@@ -20,7 +22,6 @@ export default function Character() {
   const [character, setCharacter] = useState<ICharacter | undefined>(undefined);
   useEffect(() => {
     characterService.single(id).then((response) => {
-      console.log("single", response);
       setCharacter(response);
     }).catch((error) => {
       router.navigate(`+not-found`);
@@ -75,6 +76,14 @@ export default function Character() {
             <Detail>{character?.created}</Detail>
           </Section>
         </Row>
+        <NavigationContainer>
+          <Button
+              onPress={() => {
+                router.back();
+              }}
+              children="Volver atras <"
+            />
+        </NavigationContainer>
       </Body>
     </ParallaxScrollView>
   );

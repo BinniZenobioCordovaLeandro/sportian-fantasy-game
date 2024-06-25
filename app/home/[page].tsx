@@ -22,8 +22,8 @@ export default function HomeScreen() {
   >([]);
 
   useEffect(() => {
+    setFilterName(undefined);
     characterService.pagination(page).then((response) => {
-      console.log("pagination", response);
       let data = response?.results;
       data = data.slice(0, 10)
       setCharacters(data.slice(0, 10));
@@ -39,7 +39,6 @@ export default function HomeScreen() {
   }, [page]);
 
   useEffect(() => {
-    console.log("filterName", filterName);
     if (filterName) {
       const data = characters.filter((character: ICharacter) => {
         return [

@@ -37,3 +37,7 @@ export const Detail = styled(Text)`
   padding: ${spacing[2]}px;
   font-decoration: underline;
 `;
+
+export const NavigationContainer = styled.View`
+  padding: ${spacing[5]}px;
+`;

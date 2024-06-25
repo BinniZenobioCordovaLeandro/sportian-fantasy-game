@@ -9,8 +9,12 @@ describe('Button', () => {
   })
 
   it('renders correctly', () => {
-    renderer.create(<Button onClick={() => {
-      console.log('Button clicked')
-    }}>Button</Button>)
+    renderer.create(
+      <Button
+        onClick={() => {
+          // do nothing
+        }} children="Button"
+      />
+    )
   })
 })

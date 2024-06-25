@@ -1,7 +1,7 @@
 import { IApiResponseObject, IApiResponsePagination } from "../api";
 import { ICharacter } from "../character.model";
 
-export interface ICharacterData  {
+export interface ICharacterData {
   data: ICharacter;
 };
 
@@ -21,8 +21,8 @@ export interface ICharacterDataPagination {
   };
 };
 
-export interface ICharacterResponseObject extends IApiResponseObject<ICharacterData> {};
+export interface ICharacterResponseObject extends IApiResponseObject<ICharacterData> { };
 
-export interface ICharacterResponseArray extends IApiResponsePagination<ICharacterDataArray> {};
+export interface ICharacterResponseArray extends IApiResponsePagination<ICharacterDataArray> { };
 
-export interface ICharacterResponsePagination extends IApiResponsePagination<ICharacterDataPagination> {};
+export interface ICharacterResponsePagination extends IApiResponsePagination<ICharacterDataPagination> { };

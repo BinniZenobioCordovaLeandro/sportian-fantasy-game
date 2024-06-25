@@ -11,7 +11,7 @@ import {
   Title,
 } from "./character.presets";
 import { ScrollView } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 
 export default function Character() {
@@ -22,6 +22,8 @@ export default function Character() {
     characterService.single(id).then((response) => {
       console.log("single", response);
       setCharacter(response);
+    }).catch((error) => {
+      router.navigate(`+not-found`);
     });
 
     return () => {};

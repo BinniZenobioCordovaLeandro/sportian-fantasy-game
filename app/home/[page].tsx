@@ -5,13 +5,14 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ICharacter } from "@/models/character.model";
 import { Character } from "@/components/character/character";
 import { Button } from "@/components/button/button";
-import { router, useLocalSearchParams } from "expo-router";
+import { Redirect, router, useLocalSearchParams } from "expo-router";
 import { Body, ConfigBar, ListContainer, NavigationContainer } from "./home.presets";
 import { TextInput } from "@/components/text-input/text-input";
 import { IHomeScreenProps } from "./home.props";
 
 export default function HomeScreen() {
   const { page } = useLocalSearchParams<IHomeScreenProps>();
+  const [availableNextPage, setavailableNextPage] = useState(false);
 
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [filterName, setFilterName] = useState<string | undefined>(undefined);
@@ -27,6 +28,11 @@ export default function HomeScreen() {
       data = data.slice(0, 10)
       setCharacters(data.slice(0, 10));
       setFilteredCharacters(data);
+
+      let nextPageAvailable = response?.info.next;
+      setavailableNextPage(!!nextPageAvailable);
+    }).catch((error) => {
+      router.navigate(`+not-found`);
     });
 
     return () => {};
@@ -90,12 +96,14 @@ export default function HomeScreen() {
             }}
             children="<<< Previous Page"
           />
-          <Button
-            onPress={() => {
-              router.navigate(`home/${parseInt(page) + 1}`);
-            }}
-            children="Next Page >>>"
-          />
+          {availableNextPage && (
+            <Button
+              onPress={() => {
+                router.navigate(`home/${parseInt(page) + 1}`);
+              }}
+              children="Next Page >>>"
+            />
+          )}
         </NavigationContainer>
       </Body>
     </ParallaxScrollView>
